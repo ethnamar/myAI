@@ -74,5 +74,6 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    @apply bg-[url('/Fitness-AI-Guy.jpg')] bg-cover bg-center bg-fixed;
   }
 }
