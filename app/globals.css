@@ -73,7 +73,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    @apply bg-[url('/Fitness-AI-Guy.jpg')] bg-cover bg-center bg-fixed;
-  }
+  @apply bg-background text-foreground bg-cover bg-center bg-fixed;
+  background-image: url('/Fitness-AI-Guy.jpg');
 }
+
