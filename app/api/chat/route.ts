@@ -52,10 +52,30 @@ async function determineIntention(chat: Chat): Promise<Intention> {
   });
 }
 
+async function generateWorkoutResponse(): Promise<string> {
+  return `
+    <div class="workout-card">
+      <h2 class="text-xl font-bold">Functional Strength Workout</h2>
+      <p class="text-muted-foreground">Here’s your strength-focused workout:</p>
+      <ul class="list-disc pl-5">
+        <li><strong>Warm-Up (5 min)</strong>: Arm Circles, Leg Swings, Lunges, High Knees</li>
+        <li><strong>Strength Workout (20 min)</strong>: Push-Ups, Deadlifts, Plank Rows</li>
+        <li><strong>Cool Down</strong>: Stretching & Breathing</li>
+      </ul>
+    </div>
+  `;
+}
+
 export async function POST(req: Request) {
   const { chat } = await req.json();
 
   const intention: Intention = await determineIntention(chat);
+
+  if (chat.messages[chat.messages.length - 1].content.toLowerCase().includes("workout")) {
+    return new Response(await generateWorkoutResponse(), {
+      headers: { "Content-Type": "text/html" },
+    });
+  }
 
   if (intention.type === "question") {
     return ResponseModule.respondToQuestion(chat, providers, pineconeIndex);
@@ -65,3 +85,4 @@ export async function POST(req: Request) {
     return ResponseModule.respondToRandomMessage(chat, providers);
   }
 }
+
