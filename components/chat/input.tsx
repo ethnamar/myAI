@@ -44,28 +44,28 @@ export default function ChatInput({
 
   return (
     <>
-      <div className="z-10 fixed bottom-0 w-full bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base flex flex-col items-center pb-4">
+      <div className="z-10 fixed bottom-0 w-full bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base flex flex-col items-center pb-4 px-4">
         
-        {/* Timer Buttons */}
-        <div className="flex gap-2 mb-2">
-          <Button onClick={() => startTimer(30)} className="bg-blue-500 text-white p-2 rounded">
+        {/* Timer Buttons (Better Spacing) */}
+        <div className="flex gap-4 mb-3">
+          <Button onClick={() => startTimer(30)} className="bg-blue-500 text-white py-2 px-4 rounded text-lg">
             30s
           </Button>
-          <Button onClick={() => startTimer(60)} className="bg-green-500 text-white p-2 rounded">
+          <Button onClick={() => startTimer(60)} className="bg-green-500 text-white py-2 px-4 rounded text-lg">
             60s
           </Button>
-          <Button onClick={() => startTimer(90)} className="bg-red-500 text-white p-2 rounded">
+          <Button onClick={() => startTimer(90)} className="bg-red-500 text-white py-2 px-4 rounded text-lg">
             90s
           </Button>
         </div>
 
         {/* Timer Display */}
         {isTimerRunning && (
-          <p className="text-lg font-bold text-gray-800">Time Left: {timer}s</p>
+          <p className="text-lg font-bold text-gray-800 mb-2">Time Left: {timer}s</p>
         )}
 
         {/* Chat Input */}
-        <div className="w-full max-w-3xl px-4">
+        <div className="w-full max-w-3xl">
           <Form {...useForm({ defaultValues: { message: "" } })}>
             <form onSubmit={handleSubmit} className="flex gap-2">
               <FormField
@@ -87,15 +87,17 @@ export default function ChatInput({
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white rounded p-2">
+              <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white rounded p-3">
                 <ArrowUp size={20} />
               </Button>
             </form>
           </Form>
         </div>
 
-        {/* Terms of Service */}
-        <ChatFooter />
+        {/* Keep Terms of Service Visible */}
+        <div className="mt-2 w-full flex justify-center">
+          <ChatFooter />
+        </div>
       </div>
     </>
   );
