@@ -44,7 +44,7 @@ export default function ChatInput({
 
   return (
     <>
-      <div className="z-10 flex flex-col justify-center items-center fixed bottom-0 w-full p-5 bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base">
+      <div className="z-10 fixed bottom-0 w-full bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base flex flex-col items-center pb-4">
         
         {/* Timer Buttons */}
         <div className="flex gap-2 mb-2">
@@ -64,34 +64,39 @@ export default function ChatInput({
           <p className="text-lg font-bold text-gray-800">Time Left: {timer}s</p>
         )}
 
-        <Form {...useForm({ defaultValues: { message: "" } })}>
-          <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-lg">
-            <FormField
-              control={useForm().control}
-              name="message"
-              render={({ field }) => (
-                <FormItem className="flex-grow">
-                  <FormControl>
-                    <Input
-                      {...field}
-                      value={input}
-                      onChange={handleInputChange}
-                      placeholder="Type your message here..."
-                      onFocus={() => setIsFocused(true)}
-                      onBlur={() => setIsFocused(false)}
-                      className="w-full p-2 border rounded"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white rounded p-2">
-              <ArrowUp size={20} />
-            </Button>
-          </form>
-        </Form>
+        {/* Chat Input */}
+        <div className="w-full max-w-3xl px-4">
+          <Form {...useForm({ defaultValues: { message: "" } })}>
+            <form onSubmit={handleSubmit} className="flex gap-2">
+              <FormField
+                control={useForm().control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem className="flex-grow">
+                    <FormControl>
+                      <Input
+                        {...field}
+                        value={input}
+                        onChange={handleInputChange}
+                        placeholder="Type your message here..."
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        className="w-full p-2 border rounded"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white rounded p-2">
+                <ArrowUp size={20} />
+              </Button>
+            </form>
+          </Form>
+        </div>
+
+        {/* Terms of Service */}
+        <ChatFooter />
       </div>
-      <ChatFooter />
     </>
   );
 }
