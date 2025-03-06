@@ -34,9 +34,7 @@ function UserMessage({ message }: { message: DisplayMessage }) {
 }
 
 function AssistantMessage({ message }: { message: DisplayMessage }) {
-  const isWorkoutResponse =
-    message.content.includes("Warm-Up") &&
-    message.content.includes("Strength Workout");
+  const isWorkoutResponse = message.content.includes("Strength Workout") || message.content.includes("Warm-Up");
 
   return (
     <motion.div
@@ -54,10 +52,7 @@ function AssistantMessage({ message }: { message: DisplayMessage }) {
         } rounded-2xl text-black max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300`}
       >
         {isWorkoutResponse ? (
-          <div className="workout-card">
-            <h2 className="text-xl font-bold">Workout Plan</h2>
-            <p className="text-muted-foreground">{message.content}</p>
-          </div>
+          <div className="workout-card" dangerouslySetInnerHTML={{ __html: message.content }} />
         ) : (
           <Formatting message={message} />
         )}
