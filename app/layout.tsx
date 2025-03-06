@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { PAGE_TITLE, PAGE_DESCRIPTION } from "@/configuration/ui";
