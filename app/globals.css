@@ -76,23 +76,35 @@ body {
     @apply border-border;
   }
   
-  /* ======= Gradient Background ======= */
+  /* ======= Gradient Background (Smoother, Full-Screen) ======= */
   body {
-    @apply bg-background text-foreground bg-cover bg-center bg-fixed tracking-wide leading-relaxed;
-    background: linear-gradient(135deg, hsl(220, 90%, 40%) 0%, hsl(160, 60%, 35%) 100%);
+    @apply bg-background text-foreground tracking-wide leading-relaxed;
+    background: linear-gradient(180deg, hsl(220, 90%, 40%) 0%, hsl(160, 60%, 35%) 100%);
+    min-height: 100vh; /* Ensures full-page coverage */
+    background-size: cover; /* Prevents tiling */
+    background-attachment: fixed; /* Ensures background stays smooth on scroll */
   }
 }
 
-/* ======= Workout Cards ======= */
+/* ======= Workout Cards (Refined for Consistency) ======= */
 @layer components {
   .workout-card {
-    @apply bg-card text-card-foreground p-6 rounded-lg shadow-lg border border-border transition-all duration-200 hover:shadow-xl hover:scale-105;
+    @apply bg-card text-card-foreground p-6 rounded-lg shadow-lg border border-border transition-all duration-200;
+    max-width: 600px; /* Keeps it readable */
+    width: 100%; /* Ensures responsiveness */
+    margin: auto; /* Centered in the UI */
+  }
+
+  /* Hover Effect */
+  .workout-card:hover {
+    @apply shadow-xl scale-105 transition-transform duration-300 ease-in-out;
   }
 }
 
-/* ======= Motivational Headings ======= */
+/* ======= Motivational Headings (More Impactful) ======= */
 @layer components {
   .heading-motivational {
-    @apply text-4xl font-extrabold text-primary uppercase tracking-wide text-center mb-4;
+    @apply text-5xl font-extrabold text-primary uppercase tracking-wider text-center mb-6;
+    letter-spacing: 0.1em; /* Makes text pop more */
   }
 }
