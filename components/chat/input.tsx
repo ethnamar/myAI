@@ -45,8 +45,9 @@ export default function ChatInput({
   return (
     <>
       <div className="z-10 flex flex-col justify-center items-center fixed bottom-0 w-full p-5 bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base">
+        
         {/* Timer Buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 mb-2">
           <Button onClick={() => startTimer(30)} className="bg-blue-500 text-white p-2 rounded">
             30s
           </Button>
@@ -60,13 +61,13 @@ export default function ChatInput({
 
         {/* Timer Display */}
         {isTimerRunning && (
-          <p className="mt-2 text-lg font-bold text-gray-800">Time Left: {timer}s</p>
+          <p className="text-lg font-bold text-gray-800">Time Left: {timer}s</p>
         )}
 
-        <Form {...form}>
+        <Form {...useForm({ defaultValues: { message: "" } })}>
           <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-lg">
             <FormField
-              control={form.control}
+              control={useForm().control}
               name="message"
               render={({ field }) => (
                 <FormItem className="flex-grow">
@@ -94,5 +95,3 @@ export default function ChatInput({
     </>
   );
 }
-
-
