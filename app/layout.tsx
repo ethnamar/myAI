@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <TooltipProvider>
         <body
-          className={${geistSans.variable} ${geistMono.variable} antialiased}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <ErrorWrapper>{children}</ErrorWrapper>
         </body>
