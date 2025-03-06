@@ -34,8 +34,6 @@ function UserMessage({ message }: { message: DisplayMessage }) {
 }
 
 function AssistantMessage({ message }: { message: DisplayMessage }) {
-  const isWorkoutResponse = message.content.includes("Strength Workout") || message.content.includes("Warm-Up");
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,15 +45,9 @@ function AssistantMessage({ message }: { message: DisplayMessage }) {
       <motion.div
         whileHover={{ scale: 1.01 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className={`px-3 py-1 ${
-          isWorkoutResponse ? "workout-card" : "bg-gray-200"
-        } rounded-2xl text-black max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300`}
+        className="px-3 py-1 bg-gray-200 rounded-2xl text-black max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300"
       >
-        {isWorkoutResponse ? (
-          <div className="workout-card" dangerouslySetInnerHTML={{ __html: message.content }} />
-        ) : (
-          <Formatting message={message} />
-        )}
+        <Formatting message={message} />
       </motion.div>
     </motion.div>
   );
