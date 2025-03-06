@@ -14,43 +14,15 @@ body {
 
 @layer base {
   :root {
-    --background: 220 15% 15%; /* Dark Gray-Black for a modern gym look */
-    --foreground: 0 0% 100%; /* White text for high contrast */
-    --card: 220 20% 20%;
-    --card-foreground: 0 0% 100%;
-    --popover: 220 20% 20%;
+    --background: 220 20% 12%; /* Solid dark gray */
+    --foreground: 0 0% 100%; /* White text */
+    --card: 220 25% 18%; /* Slightly lighter gray for chat bubbles */
+    --card-foreground: 0 0% 100%; /* White text inside chat bubbles */
+    --popover: 220 25% 18%;
     --popover-foreground: 0 0% 100%;
-    --primary: 0 85% 50%; /* Bold Red for primary buttons (Energy, Strength) */
+    --primary: 0 85% 50%; /* Bold Red */
     --primary-foreground: 0 0% 100%;
-    --secondary: 120 70% 40%; /* Neon Green for secondary highlights */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 15% 25%;
-    --muted-foreground: 0 0% 70%;
-    --accent: 220 40% 30%; /* Dark Blue for a sleek contrast */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 85% 50%; /* Red for destructive actions (delete, warning) */
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 30%;
-    --input: 220 20% 30%;
-    --ring: 0 85% 50%; /* Red ring for interactive elements */
-    --chart-1: 0 85% 50%; /* Red */
-    --chart-2: 120 70% 40%; /* Green */
-    --chart-3: 40 90% 55%; /* Orange */
-    --chart-4: 220 80% 50%; /* Blue */
-    --chart-5: 280 75% 55%; /* Purple */
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 220 20% 10%; /* Slightly darker for dark mode */
-    --foreground: 0 0% 100%;
-    --card: 220 25% 15%;
-    --card-foreground: 0 0% 100%;
-    --popover: 220 25% 15%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 85% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 70% 40%;
+    --secondary: 120 70% 40%; /* Neon Green */
     --secondary-foreground: 0 0% 100%;
     --muted: 220 15% 20%;
     --muted-foreground: 0 0% 70%;
@@ -58,8 +30,35 @@ body {
     --accent-foreground: 0 0% 100%;
     --destructive: 0 85% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 0 85% 50%;
+    --chart-1: 0 85% 50%;
+    --chart-2: 120 70% 40%;
+    --chart-3: 40 90% 55%;
+    --chart-4: 220 80% 50%;
+    --chart-5: 280 75% 55%;
+  }
+
+  .dark {
+    --background: 220 25% 10%;
+    --foreground: 0 0% 100%;
+    --card: 220 30% 15%;
+    --card-foreground: 0 0% 100%;
+    --popover: 220 30% 15%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 85% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 120 70% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 220 50% 22%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 25% 15%;
+    --input: 220 25% 15%;
     --ring: 0 85% 50%;
     --chart-1: 0 85% 50%;
     --chart-2: 120 70% 40%;
@@ -76,6 +75,34 @@ body {
 
   body {
     @apply bg-background text-foreground bg-cover bg-center bg-fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
+
+  .chat-container {
+    @apply bg-background text-white;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* Ensure chatbot messages are visible */
+  .chat-message {
+    @apply bg-card text-white; /* White text inside chat bubbles */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+  }
+
+  /* Ensure user messages are visible */
+  .user-message {
+    @apply bg-primary text-white; /* Bold red background with white text */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
   }
 }
 
