@@ -17,7 +17,7 @@ body {
     --background: 220 20% 12%; /* Solid dark gray */
     --foreground: 0 0% 100%; /* White text */
     --card: 220 25% 18%; /* Slightly lighter gray for chat bubbles */
-    --card-foreground: 0 0% 100%; /* White text inside chat bubbles */
+    --card-foreground: 0 0% 90%; /* Light gray text inside chat bubbles */
     --popover: 220 25% 18%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 85% 50%; /* Bold Red */
@@ -25,7 +25,7 @@ body {
     --secondary: 120 70% 40%; /* Neon Green */
     --secondary-foreground: 0 0% 100%;
     --muted: 220 15% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted-foreground: 0 0% 80%;
     --accent: 220 40% 25%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 85% 50%;
@@ -44,7 +44,7 @@ body {
     --background: 220 25% 10%;
     --foreground: 0 0% 100%;
     --card: 220 30% 15%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 0 0% 90%;
     --popover: 220 30% 15%;
     --popover-foreground: 0 0% 100%;
     --primary: 0 85% 50%;
@@ -52,7 +52,7 @@ body {
     --secondary: 120 70% 40%;
     --secondary-foreground: 0 0% 100%;
     --muted: 220 20% 18%;
-    --muted-foreground: 0 0% 70%;
+    --muted-foreground: 0 0% 80%;
     --accent: 220 50% 22%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 85% 50%;
@@ -83,15 +83,19 @@ body {
     overflow: hidden;
   }
 
+  /* Chat Container */
   .chat-container {
     @apply bg-background text-white;
     height: 100vh;
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   /* Ensure chatbot messages are visible */
   .chat-message {
-    @apply bg-card text-white; /* White text inside chat bubbles */
+    @apply bg-card text-gray-300; /* Light gray text inside chat bubbles */
     padding: 10px;
     border-radius: 8px;
     max-width: 80%;
@@ -99,10 +103,18 @@ body {
 
   /* Ensure user messages are visible */
   .user-message {
-    @apply bg-primary text-white; /* Bold red background with white text */
+    @apply bg-primary text-white; /* Red background with white text */
     padding: 10px;
     border-radius: 8px;
     max-width: 80%;
   }
-}
 
+  /* Fix Header Visibility */
+  .chat-header {
+    color: white !important; /* Ensure "FUNCTIONAL FITNESS AI ASSISTANT 2025" is visible */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+  }
+}
