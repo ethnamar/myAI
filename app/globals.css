@@ -14,78 +14,49 @@ body {
 
 @layer base {
   :root {
-    --background: 220 20% 12%; /* Solid dark gray */
-    --foreground: 0 0% 100%; /* White text */
-    --card: 220 25% 18%; /* Slightly lighter gray for chat bubbles */
-    --card-foreground: 0 0% 90%; /* Light gray text inside chat bubbles */
-    --popover: 220 25% 18%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 85% 50%; /* Bold Red */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 70% 40%; /* Neon Green */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 15% 20%;
-    --muted-foreground: 0 0% 80%;
-    --accent: 220 40% 25%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 85% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 0 85% 50%;
-    --chart-1: 0 85% 50%;
-    --chart-2: 120 70% 40%;
-    --chart-3: 40 90% 55%;
-    --chart-4: 220 80% 50%;
-    --chart-5: 280 75% 55%;
+    --background: #1A1A1A; /* Solid Dark Background */
+    --foreground: #FFFFFF; /* White text */
+    --card: #262626; /* Darker chat bubbles */
+    --card-foreground: #E0E0E0; /* Light gray text inside chat bubbles */
+    --popover: #262626;
+    --popover-foreground: #FFFFFF;
+    --primary: #FF3131; /* Strong Red for action buttons */
+    --primary-foreground: #FFFFFF;
+    --secondary: #2ECC71; /* Green for success messages */
+    --secondary-foreground: #FFFFFF;
+    --muted: #333333; /* Muted dark gray */
+    --muted-foreground: #AAAAAA; /* Muted text color */
+    --accent: #FFD700; /* Gold for highlights */
+    --accent-foreground: #1A1A1A; /* Dark text on gold */
+    --border: #444444; /* Slightly lighter dark border */
+    --ring: #FF3131; /* Red ring for interactive elements */
   }
 
   .dark {
-    --background: 220 25% 10%;
-    --foreground: 0 0% 100%;
-    --card: 220 30% 15%;
-    --card-foreground: 0 0% 90%;
-    --popover: 220 30% 15%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 85% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 120 70% 40%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 20% 18%;
-    --muted-foreground: 0 0% 80%;
-    --accent: 220 50% 22%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 85% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 25% 15%;
-    --input: 220 25% 15%;
-    --ring: 0 85% 50%;
-    --chart-1: 0 85% 50%;
-    --chart-2: 120 70% 40%;
-    --chart-3: 40 90% 55%;
-    --chart-4: 220 80% 50%;
-    --chart-5: 280 75% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+    --background: #121212; /* Even darker for night mode */
+    --foreground: #F5F5F5;
+    --card: #1E1E1E;
+    --card-foreground: #F5F5F5;
+    --popover: #1E1E1E;
+    --popover-foreground: #F5F5F5;
+    --primary: #E74C3C;
+    --secondary: #27AE60;
+    --accent: #F1C40F;
   }
 
+  /* Ensure the background covers the full screen */
   body {
-    @apply bg-background text-foreground bg-cover bg-center bg-fixed;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    overflow: hidden !important;
   }
 
-  /* Chat Container */
+  /* Chat Container - Ensure messages are readable */
   .chat-container {
-    @apply bg-background text-white;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -93,28 +64,51 @@ body {
     justify-content: space-between;
   }
 
-  /* Ensure chatbot messages are visible */
+  /* Chatbot messages */
   .chat-message {
-    @apply bg-card text-gray-300; /* Light gray text inside chat bubbles */
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 80%;
+    background-color: var(--card) !important;
+    color: var(--card-foreground) !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    max-width: 80% !important;
   }
 
-  /* Ensure user messages are visible */
+  /* User messages */
   .user-message {
-    @apply bg-primary text-white; /* Red background with white text */
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 80%;
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    max-width: 80% !important;
+    align-self: flex-end !important;
+  }
+
+  /* Chat input field */
+  input {
+    background-color: #FFFFFF !important;
+    color: #1A1A1A !important;
+    border: 1px solid var(--border) !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+  }
+
+  /* Chat input container */
+  .chat-input-container {
+    display: flex !important;
+    background-color: #FFFFFF !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   /* Fix Header Visibility */
   .chat-header {
-    color: white !important; /* Ensure "FUNCTIONAL FITNESS AI ASSISTANT 2025" is visible */
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 15px;
+    color: var(--accent) !important; /* Gold header text */
+    font-size: 1.8rem !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    padding: 15px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
   }
 }
