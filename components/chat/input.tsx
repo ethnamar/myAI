@@ -22,54 +22,75 @@ export default function ChatInput({
   isLoading,
 }: ChatInputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const form = useForm({
-    defaultValues: {
-      message: "",
-    },
-  });
+  const [timer, setTimer] = useState(0);
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  // Function to start the timer
+  const startTimer = (seconds: number) => {
+    setTimer(seconds);
+    setIsTimerRunning(true);
+
+    const countdown = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdown);
+          setIsTimerRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
 
   return (
     <>
       <div className="z-10 flex flex-col justify-center items-center fixed bottom-0 w-full p-5 bg-white shadow-[0_-10px_15px_-2px_rgba(255,255,255,1)] text-base">
-        <div className="max-w-screen-lg w-full">
-          <Form {...form}>
-            <form
-              onSubmit={handleSubmit}
-              className={`flex-0 flex w-full p-1 border rounded-full shadow-sm ${
-                isFocused ? "ring-2 ring-ring ring-offset-2" : ""
-              }`}
-            >
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem className="flex-grow">
-                    <FormControl>
-                      <Input
-                        {...field}
-                        onChange={handleInputChange}
-                        value={input}
-                        className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 bg-transparent"
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                        placeholder="Type your message here..."
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-              <Button
-                type="submit"
-                className="rounded-full w-10 h-10 p-0 flex items-center justify-center"
-                disabled={input.trim() === "" || isLoading}
-              >
-                <ArrowUp className="w-5 h-5" />
-              </Button>
-            </form>
-          </Form>
+        <div className="flex gap-2">
+          {/* Timer Buttons */}
+          <button onClick={() => startTimer(30)} className="p-2 bg-blue-500 text-white rounded">
+            30s
+          </button>
+          <button onClick={() => startTimer(60)} className="p-2 bg-green-500 text-white rounded">
+            60s
+          </button>
+          <button onClick={() => startTimer(90)} className="p-2 bg-red-500 text-white rounded">
+            90s
+          </button>
         </div>
-        <ChatFooter />
+
+        {/* Timer Display */}
+        {isTimerRunning && (
+          <p className="mt-2 text-lg font-bold text-gray-800">Time Left: {timer}s</p>
+        )}
+
+        <Form {...form}>
+          <form onSubmit={handleSubmit} className="flex gap-2 w-full max-w-lg">
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem className="flex-grow">
+                  <FormControl>
+                    <Input
+                      {...field}
+                      value={input}
+                      onChange={handleInputChange}
+                      placeholder="Type your message here..."
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => setIsFocused(false)}
+                      className="w-full p-2 border rounded"
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Button type="submit" disabled={isLoading} className="bg-blue-500 text-white rounded p-2">
+              <ArrowUp size={20} />
+            </Button>
+          </form>
+        </Form>
       </div>
+      <ChatFooter />
     </>
   );
 }
