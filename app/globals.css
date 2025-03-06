@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
 }
 
 @layer utilities {
@@ -14,122 +16,66 @@ body {
 
 @layer base {
   :root {
-    --background: #1A1A1A; /* Solid Dark Gray for modern gym look */
-    --foreground: #FFFFFF; /* White text for high contrast */
-    --card: #262626; /* Darker gray chat bubbles */
-    --card-foreground: #E0E0E0; /* Light gray text inside chat bubbles */
-    --popover: #262626;
-    --popover-foreground: #FFFFFF;
-    --primary: #FF3131; /* Strong Red for action buttons (Energy, Strength) */
-    --primary-foreground: #FFFFFF;
-    --secondary: #2ECC71; /* Green for secondary highlights */
-    --secondary-foreground: #FFFFFF;
-    --muted: #333333; /* Muted dark gray */
-    --muted-foreground: #AAAAAA; /* Muted text color */
-    --accent: #FFD700; /* Gold for highlights */
-    --accent-foreground: #1A1A1A; /* Dark text on gold */
-    --border: #444444; /* Slightly lighter dark border */
-    --ring: #FF3131; /* Red ring for interactive elements */
-    --radius: 0.5rem;
+    --background: 0 0% 100%;
+    --foreground: 210 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+    --primary: 220 90% 45%; /* Energetic blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 60% 40%; /* Athletic green */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 25% 90%;
+    --muted-foreground: 210 15% 40%;
+    --accent: 25 90% 55%; /* Motivating orange */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 85% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 15% 85%;
+    --input: 210 15% 85%;
+    --ring: 220 90% 45%;
+    --chart-1: 220 80% 50%; /* Blue */
+    --chart-2: 160 75% 40%; /* Green */
+    --chart-3: 25 85% 50%; /* Orange */
+    --chart-4: 340 80% 50%; /* Red */
+    --chart-5: 280 75% 50%; /* Purple */
+    --radius: 0.75rem; /* Slightly more rounded for modern UI */
   }
 
   .dark {
-    --background: #121212; /* Darker for night mode */
-    --foreground: #F5F5F5;
-    --card: #1E1E1E;
-    --card-foreground: #F5F5F5;
-    --popover: #1E1E1E;
-    --popover-foreground: #F5F5F5;
-    --primary: #E74C3C;
-    --secondary: #27AE60;
-    --accent: #F1C40F;
-  }
-
-  /* Force Background & Text Color */
-  body {
-    background-color: var(--background) !important;
-    color: var(--foreground) !important;
-    height: 100vh !important;
-    width: 100vw !important;
-    overflow: auto !important; /* Enables scrolling */
-    display: flex;
-    flex-direction: column;
+    --background: 210 20% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 20% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 20% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 220 90% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 70% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 25% 20%;
+    --muted-foreground: 210 15% 70%;
+    --accent: 25 90% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 80% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 25% 30%;
+    --input: 210 25% 30%;
+    --ring: 220 90% 55%;
+    --chart-1: 220 80% 55%;
+    --chart-2: 160 75% 45%;
+    --chart-3: 25 85% 55%;
+    --chart-4: 340 80% 55%;
+    --chart-5: 280 75% 55%;
   }
 }
 
 @layer base {
-  /* Ensure the chat input is always visible */
-  input {
-    background-color: #FFFFFF !important; /* White input field */
-    color: #1A1A1A !important; /* Dark text */
-    border: 1px solid var(--border) !important;
-    padding: 10px !important;
-    border-radius: 8px !important;
+  * {
+    @apply border-border;
   }
-
-  /* Ensure the chat input container is visible */
-  .chat-input-container {
-    display: flex !important;
-    background-color: #FFFFFF !important;
-    padding: 10px !important;
-    border-radius: 10px !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  /* Chat container with scrolling enabled */
-  .chat-container {
-    background-color: var(--background) !important;
-    color: var(--foreground) !important;
-    flex-grow: 1;
-    overflow-y: auto !important; /* Enables scrolling */
-    padding-bottom: 60px; /* Prevents overlap with input */
-  }
-
-  /* Chatbot messages */
-  .chat-message {
-    background-color: var(--card) !important;
-    color: var(--card-foreground) !important;
-    padding: 10px !important;
-    border-radius: 8px !important;
-    max-width: 80% !important;
-  }
-
-  /* User messages */
-  .user-message {
-    background-color: var(--primary) !important;
-    color: var(--primary-foreground) !important;
-    padding: 10px !important;
-    border-radius: 8px !important;
-    max-width: 80% !important;
-    align-self: flex-end !important;
-  }
-
-  /* Submit button */
-  .submit-button {
-    background-color: var(--primary) !important;
-    color: var(--primary-foreground) !important;
-    border: none !important;
-    padding: 10px 15px !important;
-    border-radius: 8px !important;
-    cursor: pointer;
-  }
-
-  .submit-button:hover {
-    background-color: #C00000 !important; /* Darker red for hover effect */
-  }
-
-  /* Fix Header Visibility */
-  .chat-header {
-    color: var(--accent) !important; /* Gold header text */
-    font-size: 1.8rem !important;
-    font-weight: bold !important;
-    text-align: center !important;
-    padding: 15px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
+  body {
+    @apply bg-background text-foreground bg-cover bg-center bg-fixed tracking-wide leading-relaxed;
   }
 }
