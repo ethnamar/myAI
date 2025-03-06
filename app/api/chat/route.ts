@@ -55,12 +55,21 @@ async function determineIntention(chat: Chat): Promise<Intention> {
 async function generateWorkoutResponse(): Promise<string> {
   return `
     <div class="workout-card">
-      <h2 class="text-xl font-bold">Functional Strength Workout</h2>
+      <h2 class="text-xl font-bold">🏋️ Strength Workout Plan</h2>
       <p class="text-muted-foreground">Here’s your strength-focused workout:</p>
-      <ul class="list-disc pl-5">
-        <li><strong>Warm-Up (5 min)</strong>: Arm Circles, Leg Swings, Lunges, High Knees</li>
-        <li><strong>Strength Workout (20 min)</strong>: Push-Ups, Deadlifts, Plank Rows</li>
-        <li><strong>Cool Down</strong>: Stretching & Breathing</li>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><strong>Warm-Up (5 min)</strong>: Jumping Jacks, Arm Circles, Walking Lunges, Dynamic Stretches</li>
+        <li><strong>Workout (30-40 min)</strong>: 
+          <ul class="list-disc pl-5">
+            <li><strong>Deadlifts:</strong> 6-8 reps</li>
+            <li><strong>Bench Press:</strong> 6-8 reps</li>
+            <li><strong>Pull-Ups:</strong> 6-8 reps</li>
+            <li><strong>Overhead Press:</strong> 6-8 reps</li>
+            <li><strong>Bent-Over Rows:</strong> 6-8 reps</li>
+            <li><strong>Goblet Squats:</strong> 10-12 reps</li>
+          </ul>
+        </li>
+        <li><strong>Cool Down (5-10 min)</strong>: Full-body stretching</li>
       </ul>
     </div>
   `;
